@@ -54,7 +54,6 @@ type Project = {
 type VideoItem = {
   title: string;
   source: string;
-  poster: string;
 };
 
 function WhatsAppIcon({ size = 28 }: { size?: number }) {
@@ -79,22 +78,22 @@ const projects: Project[] = [
 ];
 
 const videos: VideoItem[] = [
-  { title: "Olhar de direção", source: heroVideo, poster: heroPoster },
-  { title: "Bastidores em movimento", source: behindTheScenes, poster: projectMonitor },
-  { title: "Presença em cena", source: presenceOnSet, poster: projectCamera },
-  { title: "Filme de campanha", source: campaign0716, poster: projectDirection },
-  { title: "Filme de marca", source: allegro, poster: projectCloseup },
-  { title: "Projeto imobiliário", source: alliance, poster: projectEvent },
-  { title: "Campanha de alimentos", source: eggsCampaign, poster: projectEquipment },
-  { title: "Campanha de produto", source: productCampaign, poster: aboutMain },
-  { title: "Campanha residencial", source: kasanova, poster: projectEvent },
-  { title: "Filme automotivo", source: trespach, poster: heroPoster },
-  { title: "Conteúdo vertical", source: verticalape, poster: projectVertical },
-  { title: "Conteúdo de marca 01", source: brandVideoOne, poster: projectDirection },
-  { title: "Conteúdo de marca 02", source: brandVideoTwo, poster: heroPoster },
-  { title: "Campanha de lançamento", source: vientos, poster: projectRestaurant },
-  { title: "Campanha editorial", source: zenith, poster: projectEvent },
-  { title: "Acompanhamento de obra", source: zonaNova, poster: heroPoster },
+  { title: "Olhar de direção", source: heroVideo },
+  { title: "Bastidores em movimento", source: behindTheScenes },
+  { title: "Presença em cena", source: presenceOnSet },
+  { title: "Filme de campanha", source: campaign0716 },
+  { title: "Filme de marca", source: allegro },
+  { title: "Projeto imobiliário", source: alliance },
+  { title: "Campanha de alimentos", source: eggsCampaign },
+  { title: "Campanha de produto", source: productCampaign },
+  { title: "Campanha residencial", source: kasanova },
+  { title: "Filme automotivo", source: trespach },
+  { title: "Conteúdo vertical", source: verticalape },
+  { title: "Conteúdo de marca 01", source: brandVideoOne },
+  { title: "Conteúdo de marca 02", source: brandVideoTwo },
+  { title: "Campanha de lançamento", source: vientos },
+  { title: "Campanha editorial", source: zenith },
+  { title: "Acompanhamento de obra", source: zonaNova },
 ];
 
 const navItems = [
@@ -278,7 +277,7 @@ export default function Home() {
                   <article className={`video-card reveal reveal-delay-${index % 3}`} key={video.title}>
                     <div className="video-frame">
                       <button className="video-poster" onClick={() => setActiveVideo(video)} aria-label={`Reproduzir ${video.title}`}>
-                        <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
+                        <video className="video-preview" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source src={video.source} type="video/mp4" /></video><span className="video-play"><Play size={17} fill="currentColor" /></span>
                       </button>
                     </div>
                     <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
@@ -317,7 +316,7 @@ export default function Home() {
         <div className="video-modal" role="dialog" aria-modal="true" aria-label={activeVideo.title} onClick={() => setActiveVideo(null)}>
           <div className="video-modal-card" onClick={event => event.stopPropagation()}>
             <button className="video-modal-close" onClick={() => setActiveVideo(null)} aria-label="Fechar vídeo"><X size={22} /></button>
-            <video controls autoPlay muted playsInline poster={activeVideo.poster}>
+            <video controls autoPlay muted playsInline>
               <source src={activeVideo.source} type="video/mp4" />
             </video>
             <p>{activeVideo.title}</p>

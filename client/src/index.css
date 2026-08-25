@@ -6821,3 +6821,27 @@ h2 {
 .statement-mark {
   mix-blend-mode: normal;
 }
+
+/* Portfolio videos use live previews instead of static cover images */
+.video-reel .video-poster {
+  cursor: pointer;
+  overflow: hidden;
+  background: #13110f;
+}
+.video-reel .video-preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #13110f;
+  transition: transform .55s var(--ease-out), filter .3s ease;
+}
+.video-reel .video-poster:hover .video-preview,
+.video-reel .video-poster:focus-visible .video-preview {
+  filter: brightness(.72);
+  transform: scale(1.035);
+}
+.video-reel .video-play {
+  z-index: 1;
+}
