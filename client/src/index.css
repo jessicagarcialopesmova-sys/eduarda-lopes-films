@@ -6810,3 +6810,14 @@ h2 {
 .whatsapp-float:hover > svg:first-child {
   color: var(--accent);
 }
+
+/* Keep the official wordmark legible over the cinematic dark surfaces */
+.brand-mark,
+.footer-brand {
+  background: #100c0b;
+}
+.brand-mark img,
+.footer-brand img,
+.statement-mark {
+  mix-blend-mode: normal;
+}
