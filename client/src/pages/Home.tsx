@@ -4,11 +4,10 @@ import {
   ArrowUpRight,
   Check,
   Instagram,
-  Linkedin,
   Menu,
+  MessageCircle,
   Play,
   X,
-  Youtube,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -29,18 +28,18 @@ const projectEquipment = asset("eduarda-equipamento-mesa.webp");
 const projectRestaurant = asset("eduarda-bastidor-restaurante.webp");
 const behindTheScenes = asset("bastidores-em-movimento.mp4");
 const presenceOnSet = asset("presenca-em-cena.mp4");
-const campaign0716 = asset("0716.mp4");
-const allegro = asset("allegro.mp4");
-const alliance = asset("alliance-imovel.mp4");
-const eggsCampaign = asset("entrega-ovos-redemac.mp4");
-const productCampaign = asset("img-8732.mp4");
-const kasanova = asset("kasanova-condado-capao.mp4");
-const trespach = asset("tres-pach-hyundai-i30.mp4");
-const verticalape = asset("verticalape.mp4");
-const brandVideoOne = asset("video-1.mp4");
-const brandVideoTwo = asset("video-2.mp4");
-const vientos = asset("vientos-alliance.mp4");
-const zenith = asset("zenith-junys.mp4");
+const campaign0716 = asset("filme-campanha.mp4");
+const allegro = asset("filme-marca.mp4");
+const alliance = asset("projeto-imobiliario.mp4");
+const eggsCampaign = asset("campanha-alimentos.mp4");
+const productCampaign = asset("campanha-produto.mp4");
+const kasanova = asset("campanha-residencial.mp4");
+const trespach = asset("filme-automotivo.mp4");
+const verticalape = asset("conteudo-vertical.mp4");
+const brandVideoOne = asset("conteudo-marca-01.mp4");
+const brandVideoTwo = asset("conteudo-marca-02.mp4");
+const vientos = asset("campanha-lancamento.mp4");
+const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
 
 type Project = {
@@ -73,19 +72,19 @@ const videos: VideoItem[] = [
   { title: "Olhar de direção", source: heroVideo, poster: heroPoster },
   { title: "Bastidores em movimento", source: behindTheScenes, poster: projectMonitor },
   { title: "Presença em cena", source: presenceOnSet, poster: projectCamera },
-  { title: "Campanha 0716", source: campaign0716, poster: projectDirection },
-  { title: "Allegro", source: allegro, poster: projectCloseup },
-  { title: "Alliance Imóvel", source: alliance, poster: projectEvent },
-  { title: "Entrega de Ovos Redemac", source: eggsCampaign, poster: projectEquipment },
+  { title: "Filme de campanha", source: campaign0716, poster: projectDirection },
+  { title: "Filme de marca", source: allegro, poster: projectCloseup },
+  { title: "Projeto imobiliário", source: alliance, poster: projectEvent },
+  { title: "Campanha de alimentos", source: eggsCampaign, poster: projectEquipment },
   { title: "Campanha de produto", source: productCampaign, poster: aboutMain },
-  { title: "Kasanova — Condado Capão", source: kasanova, poster: projectEvent },
-  { title: "Trespach — Hyundai i30", source: trespach, poster: heroPoster },
-  { title: "Verticalape", source: verticalape, poster: projectVertical },
+  { title: "Campanha residencial", source: kasanova, poster: projectEvent },
+  { title: "Filme automotivo", source: trespach, poster: heroPoster },
+  { title: "Conteúdo vertical", source: verticalape, poster: projectVertical },
   { title: "Conteúdo de marca 01", source: brandVideoOne, poster: projectDirection },
   { title: "Conteúdo de marca 02", source: brandVideoTwo, poster: heroPoster },
-  { title: "Vientos Alliance", source: vientos, poster: projectRestaurant },
-  { title: "Zenith Junys", source: zenith, poster: projectEvent },
-  { title: "Zona Nova — Andamento de obra", source: zonaNova, poster: heroPoster },
+  { title: "Campanha de lançamento", source: vientos, poster: projectRestaurant },
+  { title: "Campanha editorial", source: zenith, poster: projectEvent },
+  { title: "Acompanhamento de obra", source: zonaNova, poster: heroPoster },
 ];
 
 const navItems = [
@@ -198,8 +197,8 @@ export default function Home() {
           <div className="container about-layout">
             <div className="section-index reveal">01 <span>/ 05</span></div>
             <div className="about-stage reveal reveal-delay-1">
-              <figure className="about-image-main"><img src={aboutMain} alt="Eduarda com uma câmera durante uma produção" /></figure>
-              <figure className="about-image-detail"><img src={aboutDetail} alt="Detalhe de uma câmera em processo de gravação" /></figure>
+              <figure className="about-image-main"><img src={aboutMain} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
+              <figure className="about-image-detail"><img src={aboutDetail} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
               <div className="image-stamp">DIREÇÃO<br />COM PRESENÇA</div>
             </div>
             <div className="about-copy reveal reveal-delay-2">
@@ -230,7 +229,7 @@ export default function Home() {
                 <div className="service-top"><span>02</span><ArrowUpRight size={18} /></div>
                 <h3>Estratégia que<br /><em>move atenção.</em></h3>
                 <p>Estratégia, mídia e performance transformam presença em movimento — com decisões guiadas por dados.</p>
-                <div className="service-tags"><span>Estratégia</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>LinkedIn Ads</span><span>Performance</span></div>
+                <div className="service-tags"><span>Estratégia</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>Performance</span></div>
               </article>
             </div>
           </div>
@@ -247,7 +246,7 @@ export default function Home() {
             <div className="project-grid project-grid-reframed">
               {projects.map((project, index) => (
                 <article className={`project-card ${project.className} reveal reveal-delay-${index % 3}`} key={project.number}>
-                  <div className="project-image-wrap"><img src={project.image} alt={project.title} /><div className="project-overlay"><span>{project.type}</span><ArrowUpRight size={21} /></div></div>
+                  <div className="project-image-wrap"><img src={project.image} alt={project.title} loading="lazy" /><div className="project-overlay"><span>{project.type}</span><ArrowUpRight size={21} /></div></div>
                   <div className="project-meta"><span>{project.number}</span><h3>{project.title}</h3></div>
                 </article>
               ))}
@@ -259,7 +258,7 @@ export default function Home() {
                 <article className={`video-card reveal reveal-delay-${index % 3}`} key={video.title}>
                   <div className="video-frame">
                     <button className="video-poster" onClick={() => setActiveVideo(video)} aria-label={`Reproduzir ${video.title}`}>
-                      <img src={video.poster} alt="" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
+                      <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
                     </button>
                   </div>
                   <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
@@ -287,7 +286,7 @@ export default function Home() {
         </section>
 
         <section id="contato" className="contact-section section-pad">
-          <div className="container contact-grid"><div className="section-index reveal">05 <span>/ 05</span></div><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:oi@eduardalopesfilms.com">oi@eduardalopesfilms.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer"><ArrowUpRight size={16} /> WhatsApp</a><a href="https://youtube.com" target="_blank" rel="noreferrer"><Youtube size={16} /> YouTube</a><a href="https://linkedin.com" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a></div></div>
+          <div className="container contact-grid"><div className="section-index reveal">05 <span>/ 05</span></div><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer"><ArrowUpRight size={16} /> WhatsApp</a></div></div>
         </section>
       </main>
 
@@ -297,7 +296,7 @@ export default function Home() {
         <div className="video-modal" role="dialog" aria-modal="true" aria-label={activeVideo.title} onClick={() => setActiveVideo(null)}>
           <div className="video-modal-card" onClick={event => event.stopPropagation()}>
             <button className="video-modal-close" onClick={() => setActiveVideo(null)} aria-label="Fechar vídeo"><X size={22} /></button>
-            <video controls autoPlay playsInline poster={activeVideo.poster}>
+            <video controls autoPlay muted playsInline poster={activeVideo.poster}>
               <source src={activeVideo.source} type="video/mp4" />
             </video>
             <p>{activeVideo.title}</p>
@@ -305,7 +304,7 @@ export default function Home() {
         </div>
       )}
 
-      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><ArrowUpRight size={20} /></a>
+      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><MessageCircle size={22} strokeWidth={1.8} /><span><b>WhatsApp</b><small>(51) 99016-5073</small></span><ArrowUpRight size={18} /></a>
     </div>
   );
 }

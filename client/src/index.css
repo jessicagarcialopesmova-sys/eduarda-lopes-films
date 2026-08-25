@@ -4029,11 +4029,11 @@
   --ring: oklch(63% 0.12 67);
   --radius: 0.1rem;
   --cream: #f2eadc;
-  --paper: #f9f6ef;
-  --ink: #332b24;
-  --brown: #4a382c;
-  --accent: #c9934a;
-  --line: #4f392838;
+  --paper: #faf0e3;
+  --ink: #13110f;
+  --brown: #13110f;
+  --accent: #e3ccb6;
+  --line: rgba(227, 204, 182, 0.28);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 * {
@@ -4047,7 +4047,7 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   margin: 0;
-  font-family: Manrope, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 a {
   color: inherit;
@@ -4115,7 +4115,7 @@ button {
   text-transform: uppercase;
   opacity: 0.7;
   margin-top: 3px;
-  font-family: Manrope, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 8px;
   font-weight: 700;
   display: block;
@@ -4305,7 +4305,7 @@ h3 em {
   color: var(--accent);
   letter-spacing: 0.13em;
   padding-top: 8px;
-  font-family: Manrope, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 11px;
   font-weight: 800;
 }
@@ -5164,7 +5164,7 @@ h2 {
 }
 .ticker-track i {
   color: var(--accent);
-  font-family: Manrope, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 13px;
   font-style: normal;
 }
@@ -6229,5 +6229,151 @@ h2 {
   .video-modal-close {
     top: 20px;
     right: 20px;
+  }
+}
+
+/* Brand alignment pass: stable editorial grids and preserved framing */
+.project-grid-reframed {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: none;
+  align-items: start;
+  gap: 48px 24px;
+}
+.project-grid-reframed .project-tall,
+.project-grid-reframed .project-wide,
+.project-grid-reframed .project-detail {
+  grid-row: auto;
+  width: 100%;
+  margin: 0;
+  transform: none;
+}
+.project-grid-reframed .project-tall .project-image-wrap,
+.project-grid-reframed .project-wide .project-image-wrap,
+.project-grid-reframed .project-detail .project-image-wrap {
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  box-shadow: none;
+}
+.project-grid-reframed .project-image-wrap img,
+.video-grid .video-poster img {
+  object-fit: contain;
+  background: #13110f;
+}
+.project-grid .project-card:nth-child(n),
+.video-grid .video-card:nth-child(n) {
+  transform: none;
+}
+.video-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 34px 16px;
+}
+.video-grid .video-card {
+  transform: none;
+}
+.video-grid .video-frame {
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  background: #13110f;
+}
+.video-grid .video-poster {
+  cursor: pointer;
+}
+.video-grid .video-meta {
+  min-height: 68px;
+  padding-top: 12px;
+}
+.video-grid .video-meta h3 {
+  max-width: 18ch;
+  font-size: clamp(20px, 2vw, 27px);
+  line-height: 1;
+}
+.whatsapp-float {
+  width: auto;
+  min-width: 222px;
+  height: 58px;
+  padding: 10px 13px 10px 15px;
+  gap: 11px;
+  border: 1px solid rgba(227, 204, 182, .72);
+  border-radius: 999px;
+  color: #faF0e3;
+  background: #13110f;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 16px 35px rgba(19, 17, 15, .3);
+}
+.whatsapp-float > svg:first-child {
+  color: #e3ccb6;
+  flex: 0 0 auto;
+}
+.whatsapp-float > span {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  line-height: 1;
+}
+.whatsapp-float b {
+  color: #faf0e3;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.whatsapp-float small {
+  color: #e3ccb6;
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+.whatsapp-float > svg:last-child {
+  color: #e3ccb6;
+  margin-left: auto;
+}
+.whatsapp-float:hover {
+  color: #13110f;
+  background: #e3ccb6;
+  border-color: #e3ccb6;
+}
+.whatsapp-float:hover b,
+.whatsapp-float:hover small,
+.whatsapp-float:hover > svg {
+  color: #13110f;
+}
+@media (max-width: 1000px) {
+  .project-grid-reframed {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 18px;
+  }
+  .video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 14px;
+  }
+}
+@media (max-width: 800px) {
+  .project-grid-reframed {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+  .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 12px;
+  }
+  .video-grid .video-meta {
+    min-height: 58px;
+  }
+  .video-grid .video-meta h3 {
+    font-size: 21px;
+  }
+  .whatsapp-float {
+    min-width: 204px;
+    height: 55px;
+    right: 14px;
+    bottom: 14px;
+  }
+}
+@media (max-width: 520px) {
+  .video-grid {
+    grid-template-columns: 1fr;
   }
 }
