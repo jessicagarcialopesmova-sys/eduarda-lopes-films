@@ -1,11 +1,12 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
   Check,
   Instagram,
   Menu,
-  MessageCircle,
   Play,
   X,
 } from "lucide-react";
@@ -14,9 +15,9 @@ import { toast } from "sonner";
 const asset = (name: string) => `/assets/${name}`;
 const heroVideo = asset("olhar-de-direcao.mp4");
 const heroPoster = asset("eduarda-bastidor-refinado-02.png");
-const mark = asset("elf-mark.png");
-const aboutMain = asset("eduarda-retrato-refinado-01.png");
-const aboutDetail = asset("eduarda-retrato-camera.webp");
+const mark = asset("eduarda-lopes-films-logo-official.png");
+const aboutMain = asset("eduarda-retrato-camera.webp");
+const aboutDetail = asset("eduarda-retrato-refinado-01.png");
 const projectPortrait = asset("eduarda-retrato-espelho.webp");
 const projectDirection = asset("eduarda-bastidor-direcao.webp");
 const projectEvent = asset("eduarda-bastidor-evento.webp");
@@ -55,6 +56,15 @@ type VideoItem = {
   source: string;
   poster: string;
 };
+
+function WhatsAppIcon({ size = 28 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M16 3.25a12.72 12.72 0 0 0-10.9 19.3L3.5 28.5l6.1-1.55A12.75 12.75 0 1 0 16 3.25Z" stroke="currentColor" strokeWidth="2" />
+      <path d="M11.15 9.75c.3-.35.68-.4 1.02-.23l1.52.75c.3.15.48.43.4.76-.1.38-.36.82-.67 1.15-.18.2-.2.42-.06.67.48.88 1.23 1.62 2.1 2.1.25.14.47.12.67-.06.34-.3.77-.57 1.15-.67.33-.08.61.1.76.4l.75 1.52c.17.34.12.72-.23 1.02-.45.4-1.04.72-1.68.72-.5 0-1-.15-1.48-.38a8.4 8.4 0 0 1-4.02-4.02c-.24-.48-.38-.98-.38-1.48 0-.64.32-1.23.72-1.68Z" fill="currentColor" />
+    </svg>
+  );
+}
 
 const projects: Project[] = [
   { title: "Presença em quadro", type: "Retrato de marca", image: projectPortrait, number: "01", className: "project-tall" },
@@ -98,6 +108,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
+  const videoReelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reveals = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
@@ -146,13 +157,15 @@ export default function Home() {
   };
 
   const closeMenu = () => setMenuOpen(false);
+  const scrollVideos = (direction: number) => {
+    videoReelRef.current?.scrollBy({ left: direction * Math.max(videoReelRef.current.clientWidth * 0.72, 260), behavior: "smooth" });
+  };
 
   return (
     <div className="site-shell">
       <header className="site-header">
         <a href="#top" className="brand-mark" aria-label="Eduarda Lopes Films — início">
-          <img src={mark} alt="" />
-          <span><b>Eduarda Lopes</b><small>Films &amp; Digital</small></span>
+          <img src={mark} alt="Eduarda Lopes Films" />
         </a>
         <nav className={`desktop-nav ${menuOpen ? "open" : ""}`} aria-label="Navegação principal">
           {navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
@@ -196,8 +209,8 @@ export default function Home() {
         <section id="sobre" className="intro-section section-pad about-reframed">
           <div className="container about-layout">
             <div className="about-stage reveal reveal-delay-1">
-              <figure className="about-image-main"><img src={aboutMain} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
-              <figure className="about-image-detail"><img src={aboutDetail} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
+              <figure className="about-image-main"><img src={aboutMain} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
+              <figure className="about-image-detail"><img src={aboutDetail} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
               <div className="image-stamp">DIREÇÃO<br />COM PRESENÇA</div>
             </div>
             <div className="about-copy reveal reveal-delay-2">
@@ -252,21 +265,25 @@ export default function Home() {
             </div>
 
             <div className="video-strip-heading reveal"><p className="eyebrow"><span className="eyebrow-dot" /> Em movimento</p><p>Algumas cenas do processo, do set e da direção por trás de cada entrega.</p></div>
-            <div className="video-reel" aria-label="Esteira de vídeos do portfólio">
+            <div className="video-reel-controls" aria-label="Controles da galeria de vídeos">
+              <span>Deslize para ver os projetos</span>
+              <div>
+                <button type="button" onClick={() => scrollVideos(-1)} aria-label="Vídeos anteriores"><ArrowLeft size={18} /></button>
+                <button type="button" onClick={() => scrollVideos(1)} aria-label="Próximos vídeos"><ArrowRight size={18} /></button>
+              </div>
+            </div>
+            <div className="video-reel" aria-label="Galeria de vídeos do portfólio" ref={videoReelRef}>
               <div className="video-reel-track">
-                {[...videos, ...videos].map((video, index) => {
-                  const duplicate = index >= videos.length;
-                  return (
-                    <article className={`video-card reveal reveal-delay-${index % 3}`} key={`${video.title}-${index}`} aria-hidden={duplicate || undefined}>
-                      <div className="video-frame">
-                        <button className="video-poster" onClick={() => setActiveVideo(video)} tabIndex={duplicate ? -1 : 0} aria-label={`Reproduzir ${video.title}`}>
-                          <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
-                        </button>
-                      </div>
-                      <div className="video-meta"><span>{String((index % videos.length) + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
-                    </article>
-                  );
-                })}
+                {videos.map((video, index) => (
+                  <article className={`video-card reveal reveal-delay-${index % 3}`} key={video.title}>
+                    <div className="video-frame">
+                      <button className="video-poster" onClick={() => setActiveVideo(video)} aria-label={`Reproduzir ${video.title}`}>
+                        <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
+                      </button>
+                    </div>
+                    <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
+                  </article>
+                ))}
               </div>
             </div>
             <div className="portfolio-foot reveal"><span className="rule" /><p>Mais histórias e projetos em breve.</p></div>
@@ -274,7 +291,7 @@ export default function Home() {
         </section>
 
         <section className="statement-section statement-reframed" style={{ backgroundImage: `url(${heroPoster})` }}>
-          <div className="container statement-inner reveal"><img className="statement-mark" src={mark} alt="" /><p className="eyebrow light"><span className="eyebrow-dot" /> Para marcar sua presença</p><h2>Sua próxima fase<br />merece um registro<br /><em>à altura.</em></h2><a href="#orcamento" className="button button-light">Começar uma conversa <ArrowUpRight size={17} /></a></div>
+          <div className="container statement-inner reveal"><img className="statement-mark" src={mark} alt="Eduarda Lopes Films" /><p className="eyebrow light"><span className="eyebrow-dot" /> Para marcar sua presença</p><h2>Sua próxima fase<br />merece um registro<br /><em>à altura.</em></h2><a href="#orcamento" className="button button-light">Começar uma conversa <ArrowUpRight size={17} /></a></div>
         </section>
 
         <section id="orcamento" className="budget-section section-pad">
@@ -294,7 +311,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a href="#top" className="footer-brand"><img src={mark} alt="" /><span>Eduarda Lopes <small>Films &amp; Digital</small></span></a><p>Seg — Sex · 09h às 18h<br />Capão da Canoa · RS</p><p>© 2026 Eduarda Lopes Films<br /><a href="#contato">Política de privacidade</a></p><a className="back-top" href="#top" aria-label="Voltar ao topo"><ArrowUpRight size={20} /></a></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><a href="#top" className="footer-brand"><img src={mark} alt="Eduarda Lopes Films" /></a><p>Seg — Sex · 09h às 18h<br />Capão da Canoa · RS</p><p>© 2026 Eduarda Lopes Films<br /><a href="#contato">Política de privacidade</a></p><a className="back-top" href="#top" aria-label="Voltar ao topo"><ArrowUpRight size={20} /></a></div></footer>
 
       {activeVideo && (
         <div className="video-modal" role="dialog" aria-modal="true" aria-label={activeVideo.title} onClick={() => setActiveVideo(null)}>
@@ -308,7 +325,7 @@ export default function Home() {
         </div>
       )}
 
-      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><MessageCircle size={28} strokeWidth={1.8} /></a>
+      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><WhatsAppIcon size={30} /></a>
     </div>
   );
 }
