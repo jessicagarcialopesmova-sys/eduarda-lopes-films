@@ -253,7 +253,7 @@ export default function Home() {
               <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio</p><h2>Presença<br /><em>em cena.</em></h2></div>
               <p className="heading-aside">Eduarda Lopes Films<br />Filmes que conectam marcas, histórias e momentos.</p>
             </div>
-            <p className="portfolio-intro reveal">Frames, processos e campanhas pensados para ganhar presença fora da tela.</p>
+            <p className="portfolio-intro reveal">Frames, processos e celebrações pensados para ganhar presença fora da tela — de marcas e empresas a casamentos, aniversários e eventos que merecem ser lembrados.</p>
             <div className="project-grid project-grid-reframed">
               {projects.map((project, index) => (
                 <article className={`project-card ${project.className} reveal reveal-delay-${index % 3}`} key={project.number}>
@@ -310,7 +310,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer"><div className="container footer-inner"><a href="#top" className="footer-brand"><img src={mark} alt="Eduarda Lopes Films" /></a><p>Seg — Sex · 09h às 18h<br />Capão da Canoa · RS</p><p>© 2026 Eduarda Lopes Films<br /><a href="#contato">Política de privacidade</a></p><a className="back-top" href="#top" aria-label="Voltar ao topo"><ArrowUpRight size={20} /></a></div></footer>
+      <footer className="site-footer"><div className="container footer-inner"><a href="#top" className="footer-brand"><img src={mark} alt="Eduarda Lopes Films" /></a><p>Atendimento personalizado<br />Capão da Canoa · RS</p><p>© 2026 Eduarda Lopes Films<br /><a href="#contato">Política de privacidade</a></p><a className="back-top" href="#top" aria-label="Voltar ao topo"><ArrowUpRight size={20} /></a></div></footer>
 
       {activeVideo && (
         <div className="video-modal" role="dialog" aria-modal="true" aria-label={activeVideo.title} onClick={() => setActiveVideo(null)}>
