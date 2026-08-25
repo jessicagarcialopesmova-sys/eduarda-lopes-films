@@ -195,7 +195,6 @@ export default function Home() {
 
         <section id="sobre" className="intro-section section-pad about-reframed">
           <div className="container about-layout">
-            <div className="section-index reveal">01 <span>/ 05</span></div>
             <div className="about-stage reveal reveal-delay-1">
               <figure className="about-image-main"><img src={aboutMain} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
               <figure className="about-image-detail"><img src={aboutDetail} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
@@ -214,7 +213,7 @@ export default function Home() {
         <section id="servicos" className="services-section services-reframed section-pad">
           <div className="container">
             <div className="section-heading reveal">
-              <div className="section-index">02 <span>/ 05</span></div>
+
               <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Imagem com<br /><em>direção.</em></h2></div>
               <p className="heading-aside light-aside">Cada entrega nasce de uma escuta atenta e encontra seu formato no encontro entre estética, estratégia e movimento.</p>
             </div>
@@ -238,7 +237,7 @@ export default function Home() {
         <section id="portfolio" className="portfolio-section portfolio-reframed section-pad">
           <div className="container">
             <div className="section-heading portfolio-heading reveal">
-              <div className="section-index">03 <span>/ 05</span></div>
+
               <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio</p><h2>Presença<br /><em>em cena.</em></h2></div>
               <p className="heading-aside">Eduarda Lopes Films<br />Filmes que conectam marcas, histórias e momentos.</p>
             </div>
@@ -253,17 +252,22 @@ export default function Home() {
             </div>
 
             <div className="video-strip-heading reveal"><p className="eyebrow"><span className="eyebrow-dot" /> Em movimento</p><p>Algumas cenas do processo, do set e da direção por trás de cada entrega.</p></div>
-            <div className="video-grid">
-              {videos.map((video, index) => (
-                <article className={`video-card reveal reveal-delay-${index % 3}`} key={video.title}>
-                  <div className="video-frame">
-                    <button className="video-poster" onClick={() => setActiveVideo(video)} aria-label={`Reproduzir ${video.title}`}>
-                      <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
-                    </button>
-                  </div>
-                  <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
-                </article>
-              ))}
+            <div className="video-reel" aria-label="Esteira de vídeos do portfólio">
+              <div className="video-reel-track">
+                {[...videos, ...videos].map((video, index) => {
+                  const duplicate = index >= videos.length;
+                  return (
+                    <article className={`video-card reveal reveal-delay-${index % 3}`} key={`${video.title}-${index}`} aria-hidden={duplicate || undefined}>
+                      <div className="video-frame">
+                        <button className="video-poster" onClick={() => setActiveVideo(video)} tabIndex={duplicate ? -1 : 0} aria-label={`Reproduzir ${video.title}`}>
+                          <img src={video.poster} alt="" loading="lazy" /><span className="video-play"><Play size={17} fill="currentColor" /></span>
+                        </button>
+                      </div>
+                      <div className="video-meta"><span>{String((index % videos.length) + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
             <div className="portfolio-foot reveal"><span className="rule" /><p>Mais histórias e projetos em breve.</p></div>
           </div>
@@ -275,7 +279,7 @@ export default function Home() {
 
         <section id="orcamento" className="budget-section section-pad">
           <div className="container budget-grid">
-            <div className="budget-intro reveal"><div className="section-index">04 <span>/ 05</span></div><p className="eyebrow"><span className="eyebrow-dot" /> Orçamento</p><h2>Vamos tirar<br /><em>do papel?</em></h2><p>Fale sobre o que está nascendo. A partir daqui, o projeto encontra ritmo, formato e direção para ganhar presença.</p><div className="budget-checks"><span><Check size={15} /> Respondo em até 2 dias úteis</span><span><Check size={15} /> Conversa sem compromisso</span></div></div>
+            <div className="budget-intro reveal"><p className="eyebrow"><span className="eyebrow-dot" /> Orçamento</p><h2>Vamos tirar<br /><em>do papel?</em></h2><p>Fale sobre o que está nascendo. A partir daqui, o projeto encontra ritmo, formato e direção para ganhar presença.</p><div className="budget-checks"><span><Check size={15} /> Respondo em até 2 dias úteis</span><span><Check size={15} /> Conversa sem compromisso</span></div></div>
             <form className="budget-form reveal reveal-delay-1" onSubmit={handleSubmit}>
               <div className="form-row"><label>Seu nome<input required name="name" placeholder="Como podemos te chamar?" /></label><label>E-mail<input required type="email" name="email" placeholder="voce@empresa.com" /></label></div>
               <div className="form-row"><label>WhatsApp<input required name="phone" placeholder="(00) 00000-0000" /><span className="field-help">Inclua o DDD</span></label><label>Tipo de serviço<select required name="service" defaultValue=""><option value="" disabled>Escolha uma opção</option><option>Produção audiovisual</option><option>Gestão digital / tráfego pago</option><option>Os dois</option></select></label></div>
@@ -286,7 +290,7 @@ export default function Home() {
         </section>
 
         <section id="contato" className="contact-section section-pad">
-          <div className="container contact-grid"><div className="section-index reveal">05 <span>/ 05</span></div><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer"><ArrowUpRight size={16} /> WhatsApp</a></div></div>
+          <div className="container contact-grid"><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer"><ArrowUpRight size={16} /> WhatsApp</a></div></div>
         </section>
       </main>
 
@@ -304,7 +308,7 @@ export default function Home() {
         </div>
       )}
 
-      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><MessageCircle size={22} strokeWidth={1.8} /><span><b>WhatsApp</b><small>(51) 99016-5073</small></span><ArrowUpRight size={18} /></a>
+      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><MessageCircle size={28} strokeWidth={1.8} /></a>
     </div>
   );
 }

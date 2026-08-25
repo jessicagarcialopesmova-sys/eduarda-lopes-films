@@ -6377,3 +6377,213 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Editorial distribution pass: remove centered composition and build the video conveyor */
+.hero-bottom {
+  width: min(100%, 960px);
+  max-width: none;
+  margin-left: clamp(0px, 7vw, 110px);
+  padding-top: 18px;
+}
+.hero-bottom p {
+  max-width: 300px;
+}
+.hero-bottom .circle-link {
+  margin-right: clamp(0px, 8vw, 120px);
+}
+.ticker-track {
+  padding-left: clamp(24px, 9vw, 140px);
+}
+.about-layout {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: start;
+  gap: clamp(58px, 9vw, 145px);
+}
+.about-stage {
+  min-height: 640px;
+  margin-left: clamp(0px, 3vw, 42px);
+  transform: none;
+}
+.about-copy {
+  align-self: start;
+  max-width: 520px;
+  padding-top: clamp(70px, 10vw, 150px);
+  padding-bottom: 0;
+  justify-self: start;
+}
+.section-heading {
+  grid-template-columns: minmax(0, 1.25fr) minmax(220px, .75fr);
+  align-items: end;
+  gap: clamp(30px, 8vw, 120px);
+}
+.portfolio-heading {
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, .85fr);
+}
+.section-heading > div,
+.portfolio-heading > div {
+  justify-self: start;
+}
+.heading-aside {
+  justify-self: end;
+  max-width: 285px;
+}
+.portfolio-intro {
+  max-width: 560px;
+  margin: -22px 0 48px clamp(0px, 8vw, 120px);
+}
+.budget-grid {
+  align-items: start;
+}
+.budget-intro {
+  max-width: 430px;
+  padding-top: 40px;
+}
+.contact-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+  align-items: start;
+  gap: clamp(50px, 10vw, 145px);
+}
+.contact-main {
+  max-width: 620px;
+  padding-left: clamp(0px, 7vw, 110px);
+}
+.contact-details {
+  padding-top: 150px;
+}
+.whatsapp-float {
+  width: 66px;
+  min-width: 66px;
+  height: 66px;
+  padding: 0;
+  border-radius: 50%;
+  justify-content: center;
+  gap: 0;
+}
+.whatsapp-float > span,
+.whatsapp-float > svg:last-child {
+  display: none;
+}
+.whatsapp-float > svg:first-child {
+  margin: 0;
+}
+.video-reel {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 34px;
+  padding: 4px 0 18px;
+}
+.video-reel-track {
+  width: max-content;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  will-change: transform;
+  animation: portfolioConveyor 76s linear infinite;
+}
+.video-reel:hover .video-reel-track,
+.video-reel:focus-within .video-reel-track {
+  animation-play-state: paused;
+}
+.video-reel .video-card {
+  width: clamp(220px, 23vw, 300px);
+  flex: 0 0 clamp(220px, 23vw, 300px);
+  transform: none;
+}
+.video-reel .video-frame {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  background: #13110f;
+}
+.video-reel .video-poster img {
+  object-fit: contain;
+  background: #13110f;
+}
+.video-reel .video-meta {
+  min-height: 72px;
+  padding-top: 12px;
+}
+.video-reel .video-meta h3 {
+  max-width: 18ch;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1;
+}
+@keyframes portfolioConveyor {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 10px)); }
+}
+@media (max-width: 1000px) {
+  .video-reel .video-card {
+    width: clamp(205px, 30vw, 270px);
+    flex-basis: clamp(205px, 30vw, 270px);
+  }
+}
+@media (max-width: 800px) {
+  .hero-bottom {
+    margin-left: 0;
+  }
+  .hero-bottom .circle-link {
+    margin-right: 0;
+  }
+  .about-layout,
+  .section-heading,
+  .portfolio-heading,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-stage {
+    min-height: 480px;
+    margin-left: 0;
+  }
+  .about-copy {
+    padding-top: 0;
+  }
+  .section-heading,
+  .portfolio-heading {
+    gap: 22px;
+  }
+  .heading-aside {
+    justify-self: start;
+    max-width: 330px;
+  }
+  .portfolio-intro {
+    margin: -10px 0 34px;
+  }
+  .budget-intro {
+    padding-top: 0;
+  }
+  .contact-main {
+    padding-left: 0;
+  }
+  .contact-details {
+    padding-top: 0;
+  }
+  .whatsapp-float {
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .video-reel {
+    margin-inline: -1rem;
+    width: calc(100% + 2rem);
+    padding-inline: 1rem;
+  }
+  .video-reel-track {
+    gap: 14px;
+    animation-duration: 68s;
+  }
+  .video-reel .video-card {
+    width: min(64vw, 250px);
+    flex-basis: min(64vw, 250px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-reel {
+    overflow-x: auto;
+  }
+  .video-reel-track {
+    animation: none;
+    transform: none !important;
+  }
+}
