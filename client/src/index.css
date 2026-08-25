@@ -6845,3 +6845,75 @@ h2 {
 .video-reel .video-play {
   z-index: 1;
 }
+
+/* Final light-touch brand integration */
+.brand-mark,
+.footer-brand {
+  background: transparent;
+}
+.brand-mark img,
+.footer-brand img {
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: lighten;
+  opacity: .88;
+  filter: saturate(.82) brightness(1.04);
+}
+.statement-mark {
+  mix-blend-mode: lighten;
+  opacity: .84;
+  filter: saturate(.82) brightness(1.04);
+}
+.whatsapp-float {
+  width: 68px;
+  min-width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--brown);
+  background: var(--accent);
+  border: 1px solid var(--brown);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(227, 204, 182, .08), 0 16px 30px rgba(19, 17, 15, .34);
+}
+.whatsapp-float > svg:first-child {
+  display: block;
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  color: var(--brown);
+  filter: none;
+}
+.whatsapp-float:hover {
+  color: var(--accent);
+  background: var(--brown);
+  border-color: var(--accent);
+}
+.whatsapp-float:hover > svg:first-child {
+  color: var(--accent);
+}
+@media (max-width: 800px) {
+  .whatsapp-float {
+    width: 62px;
+    min-width: 62px;
+    height: 62px;
+  }
+  .whatsapp-float > svg:first-child {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Transparent official signature: render the artwork without a synthetic background or blend mode */
+.brand-mark,
+.footer-brand {
+  background: transparent;
+}
+.brand-mark img,
+.footer-brand img,
+.statement-mark {
+  mix-blend-mode: normal;
+  opacity: 1;
+  filter: none;
+}
