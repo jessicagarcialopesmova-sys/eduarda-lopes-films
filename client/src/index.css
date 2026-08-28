@@ -6917,3 +6917,38 @@ h2 {
   opacity: 1;
   filter: none;
 }
+
+/* Static hero image and more restrained photo scale */
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+}
+@media (min-width: 801px) {
+  .about-image-main {
+    width: min(100%, 390px);
+    height: 515px;
+  }
+  .about-image-detail {
+    width: 165px;
+    height: 218px;
+  }
+  .project-grid-reframed .project-image-wrap {
+    width: 88%;
+  }
+}
+@media (max-width: 800px) {
+  .about-image-main {
+    width: min(92%, 390px);
+    height: 400px;
+  }
+  .about-image-detail {
+    width: 124px;
+    height: 168px;
+  }
+  .project-grid-reframed .project-image-wrap {
+    width: 92%;
+  }
+}

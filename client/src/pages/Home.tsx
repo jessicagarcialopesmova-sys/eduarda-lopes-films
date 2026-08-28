@@ -32,8 +32,7 @@ function trackAnalyticsEvent(eventName: string, params: AnalyticsParams = {}) {
 }
 
 const asset = (name: string) => `/assets/${name}`;
-const heroVideo = asset("olhar-de-direcao.mp4");
-const heroPoster = asset("eduarda-bastidor-refinado-02.png");
+const heroPoster = asset("eduarda-bastidor-direcao.webp");
 const mark = asset("eduarda-lopes-films-logo-clean.png");
 const aboutMain = asset("eduarda-retrato-camera.webp");
 const aboutDetail = asset("eduarda-retrato-refinado-01.png");
@@ -46,8 +45,6 @@ const projectMonitor = asset("eduarda-camera-monitor.webp");
 const projectVertical = asset("eduarda-camera-vertical.webp");
 const projectEquipment = asset("eduarda-equipamento-mesa.webp");
 const projectRestaurant = asset("eduarda-bastidor-restaurante.webp");
-const behindTheScenes = asset("bastidores-em-movimento.mp4");
-const presenceOnSet = asset("presenca-em-cena.mp4");
 const campaign0716 = asset("filme-campanha.mp4");
 const allegro = asset("filme-marca.mp4");
 const alliance = asset("projeto-imobiliario.mp4");
@@ -96,9 +93,6 @@ const projects: Project[] = [
 ];
 
 const videos: VideoItem[] = [
-  { title: "Olhar de direção", source: heroVideo },
-  { title: "Bastidores em movimento", source: behindTheScenes },
-  { title: "Presença em cena", source: presenceOnSet },
   { title: "Filme de campanha", source: campaign0716 },
   { title: "Filme de marca", source: allegro },
   { title: "Projeto imobiliário", source: alliance },
@@ -220,9 +214,7 @@ export default function Home() {
       <main id="top">
         <section className="hero-section hero-reframed" aria-labelledby="hero-title">
           <div className="hero-image" style={{ backgroundImage: `url(${heroPoster})` }} aria-hidden="true">
-            <video autoPlay muted loop playsInline poster={heroPoster}>
-              <source src={heroVideo} type="video/mp4" />
-            </video>
+            <img src={heroPoster} alt="Bastidores de produção por trás da lente" />
           </div>
           <div className="hero-scrim" aria-hidden="true" />
           <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
