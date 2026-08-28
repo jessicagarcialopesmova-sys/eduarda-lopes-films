@@ -12,6 +12,25 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+type AnalyticsParams = Record<string, string | number | boolean>;
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (command: string, eventName: string, params?: AnalyticsParams) => void;
+  }
+}
+
+function trackAnalyticsEvent(eventName: string, params: AnalyticsParams = {}) {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, params);
+    return;
+  }
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push(["event", eventName, params]);
+}
+
 const asset = (name: string) => `/assets/${name}`;
 const heroVideo = asset("olhar-de-direcao.mp4");
 const heroPoster = asset("eduarda-bastidor-refinado-02.png");
@@ -138,6 +157,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("main section[id]"));
+    const viewedSections = new Set<string>();
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const sectionId = (entry.target as HTMLElement).id;
+        if (!sectionId || viewedSections.has(sectionId)) return;
+        viewedSections.add(sectionId);
+        trackAnalyticsEvent("section_view", { section_id: sectionId });
+      }),
+      { threshold: 0.25 },
+    );
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!activeVideo) return;
     const closeWithEscape = (event: KeyboardEvent) => event.key === "Escape" && setActiveVideo(null);
     document.body.style.overflow = "hidden";
@@ -150,12 +188,17 @@ export default function Home() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    trackAnalyticsEvent("contact_form_submit", {
+      service: String(formData.get("service") || "not_specified"),
+    });
     setSent(true);
     toast.success("Recebi seu projeto. Em breve entro em contato.");
   };
 
   const closeMenu = () => setMenuOpen(false);
   const scrollVideos = (direction: number) => {
+    trackAnalyticsEvent("portfolio_reel_navigation", { direction: direction > 0 ? "next" : "previous" });
     videoReelRef.current?.scrollBy({ left: direction * Math.max(videoReelRef.current.clientWidth * 0.72, 260), behavior: "smooth" });
   };
 
@@ -166,9 +209,9 @@ export default function Home() {
           <img src={mark} alt="Eduarda Lopes Films" />
         </a>
         <nav className={`desktop-nav ${menuOpen ? "open" : ""}`} aria-label="Navegação principal">
-          {navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
+          {navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => { trackAnalyticsEvent("navigation_click", { label, destination: id }); closeMenu(); }}>{label}</a>)}
         </nav>
-        <a className="header-cta" href="#orcamento">Vamos conversar <ArrowUpRight size={15} /></a>
+        <a className="header-cta" href="#orcamento" onClick={() => trackAnalyticsEvent("cta_click", { location: "header", destination: "orcamento" })}>Vamos conversar <ArrowUpRight size={15} /></a>
         <button className="menu-toggle" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} onClick={() => setMenuOpen(value => !value)}>
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
@@ -189,7 +232,7 @@ export default function Home() {
             <h1 id="hero-title">Transformando<br /><em>intenção</em> em<br />imagem.</h1>
             <div className="hero-bottom">
               <p>Filmes que aproximam.<br />Estratégias que movimentam.</p>
-              <a href="#sobre" className="circle-link" aria-label="Conheça meu trabalho"><ArrowDownRight size={24} /></a>
+              <a href="#sobre" className="circle-link" aria-label="Conheça meu trabalho" onClick={() => trackAnalyticsEvent("cta_click", { location: "hero", destination: "sobre" })}><ArrowDownRight size={24} /></a>
             </div>
           </div>
           <div className="hero-side-note">EDUARDA LOPES<br /><span>FILMS + DIGITAL</span></div>
@@ -216,7 +259,7 @@ export default function Home() {
               <h2>Forma para o<br /><em>que precisa mover.</em></h2>
               <p className="lead">Toda marca tem uma história que merece ser vista — não só contada.</p>
               <p>Direção, sensibilidade e estratégia se encontram para criar imagens que fazem sentido no mundo real. Do roteiro à campanha, cada entrega constrói presença com intenção, ritmo e verdade.</p>
-              <a href="#servicos" className="text-link">Conheça o processo <ArrowUpRight size={16} /></a>
+              <a href="#servicos" className="text-link" onClick={() => trackAnalyticsEvent("cta_click", { location: "sobre", destination: "servicos" })}>Conheça o processo <ArrowUpRight size={16} /></a>
             </div>
           </div>
         </section>
@@ -275,7 +318,7 @@ export default function Home() {
                 {videos.map((video, index) => (
                   <article className={`video-card reveal reveal-delay-${index % 3}`} key={video.title}>
                     <div className="video-frame">
-                      <button className="video-poster" onClick={() => setActiveVideo(video)} aria-label={`Reproduzir ${video.title}`}>
+                      <button className="video-poster" onClick={() => { trackAnalyticsEvent("video_play", { title: video.title }); setActiveVideo(video); }} aria-label={`Reproduzir ${video.title}`}>
                         <video className="video-preview" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source src={video.source} type="video/mp4" /></video><span className="video-play"><Play size={17} fill="currentColor" /></span>
                       </button>
                     </div>
@@ -289,7 +332,7 @@ export default function Home() {
         </section>
 
         <section className="statement-section statement-reframed" style={{ backgroundImage: `url(${heroPoster})` }}>
-          <div className="container statement-inner reveal"><img className="statement-mark" src={mark} alt="Eduarda Lopes Films" /><p className="eyebrow light"><span className="eyebrow-dot" /> Para marcar sua presença</p><h2>Sua próxima fase<br />merece um registro<br /><em>à altura.</em></h2><a href="#orcamento" className="button button-light">Começar uma conversa <ArrowUpRight size={17} /></a></div>
+          <div className="container statement-inner reveal"><img className="statement-mark" src={mark} alt="Eduarda Lopes Films" /><p className="eyebrow light"><span className="eyebrow-dot" /> Para marcar sua presença</p><h2>Sua próxima fase<br />merece um registro<br /><em>à altura.</em></h2><a href="#orcamento" className="button button-light" onClick={() => trackAnalyticsEvent("cta_click", { location: "statement", destination: "orcamento" })}>Começar uma conversa <ArrowUpRight size={17} /></a></div>
         </section>
 
         <section id="orcamento" className="budget-section section-pad">
@@ -305,7 +348,7 @@ export default function Home() {
         </section>
 
         <section id="contato" className="contact-section section-pad">
-          <div className="container contact-grid"><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer"><ArrowUpRight size={16} /> WhatsApp</a></div></div>
+          <div className="container contact-grid"><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "instagram" })}><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "whatsapp" })}><ArrowUpRight size={16} /> WhatsApp</a></div></div>
         </section>
       </main>
 
@@ -323,7 +366,7 @@ export default function Home() {
         </div>
       )}
 
-      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp"><WhatsAppIcon size={30} /></a>
+      <a className="whatsapp-float" href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" aria-label="Conversar pelo WhatsApp" onClick={() => trackAnalyticsEvent("whatsapp_click", { location: "floating_button" })}><WhatsAppIcon size={30} /></a>
     </div>
   );
 }
