@@ -4581,7 +4581,7 @@ h2 {
   justify-content: space-between;
   align-items: end;
   gap: 30px;
-  margin-top: 96px;
+  margin-top: 8px;
   padding-top: 24px;
   display: flex;
 }
@@ -5014,7 +5014,7 @@ h2 {
     grid-template-columns: 1fr;
   }
   .video-strip-heading {
-    margin-top: 68px;
+    margin-top: 8px;
     display: block;
   }
   .video-strip-heading > p:last-child {

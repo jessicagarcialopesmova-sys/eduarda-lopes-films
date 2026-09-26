@@ -34,17 +34,8 @@ function trackAnalyticsEvent(eventName: string, params: AnalyticsParams = {}) {
 const asset = (name: string) => `/assets/${name}`;
 const heroPoster = asset("eduarda-bastidor-direcao.webp");
 const mark = asset("eduarda-lopes-films-logo-clean.png");
-const aboutMain = asset("eduarda-retrato-camera.webp");
-const aboutDetail = asset("eduarda-retrato-refinado-01.png");
-const projectPortrait = asset("eduarda-retrato-espelho.webp");
-const projectDirection = asset("eduarda-bastidor-direcao.webp");
-const projectEvent = asset("eduarda-bastidor-evento.webp");
-const projectCamera = asset("eduarda-retrato-camera.webp");
-const projectCloseup = asset("eduarda-camera-closeup.webp");
-const projectMonitor = asset("eduarda-camera-monitor.webp");
-const projectVertical = asset("eduarda-camera-vertical.webp");
-const projectEquipment = asset("eduarda-equipamento-mesa.webp");
-const projectRestaurant = asset("eduarda-bastidor-restaurante.webp");
+const aboutMain = asset("eduarda-retrato-cobertura-evento.jpg");
+const aboutDetail = asset("eduarda-retrato-camera.webp");
 const campaign0716 = asset("filme-campanha.mp4");
 const allegro = asset("filme-marca.mp4");
 const alliance = asset("projeto-imobiliario.mp4");
@@ -59,14 +50,6 @@ const vientos = asset("campanha-lancamento.mp4");
 const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
 
-type Project = {
-  title: string;
-  type: string;
-  image: string;
-  number: string;
-  className: string;
-};
-
 type VideoItem = {
   title: string;
   source: string;
@@ -79,18 +62,6 @@ function WhatsAppIcon({ size = 28 }: { size?: number }) {
     </svg>
   );
 }
-
-const projects: Project[] = [
-  { title: "Presença em quadro", type: "Retrato de marca", image: projectPortrait, number: "01", className: "project-tall" },
-  { title: "Por trás da lente", type: "Bastidores de produção", image: projectDirection, number: "02", className: "project-wide" },
-  { title: "Direção em movimento", type: "Cobertura e conteúdo", image: projectEvent, number: "03", className: "project-detail" },
-  { title: "Entre takes", type: "Processo criativo", image: projectCamera, number: "04", className: "project-detail" },
-  { title: "Luz de set", type: "Imagem e atmosfera", image: projectCloseup, number: "05", className: "project-wide" },
-  { title: "O olhar no monitor", type: "Direção e acompanhamento", image: projectMonitor, number: "06", className: "project-detail" },
-  { title: "No eixo da cena", type: "Captação vertical", image: projectVertical, number: "07", className: "project-detail" },
-  { title: "Tudo pronto para gravar", type: "Produção audiovisual", image: projectEquipment, number: "08", className: "project-wide" },
-  { title: "Depois da gravação", type: "Bastidor e presença", image: projectRestaurant, number: "09", className: "project-detail" },
-];
 
 const videos: VideoItem[] = [
   { title: "Filme de campanha", source: campaign0716 },
@@ -233,7 +204,7 @@ export default function Home() {
 
         <div className="ticker" aria-label="Manifesto da marca">
           <div className="ticker-track">
-            {["Filmes que aproximam", "Estratégias que movimentam", "Intenção em imagem", "Filmes que aproximam", "Estratégias que movimentam", "Intenção em imagem"].map((item, index) => (
+            {["Filmes que aproximam", "Estratégias que movimentam", "Intenção em imagem", "Gestão de tráfego pago", "Filmes que aproximam", "Estratégias que movimentam", "Intenção em imagem", "Gestão de tráfego pago"].map((item, index) => (
               <span key={`${item}-${index}`}>{item} <i>✳</i></span>
             ))}
           </div>
@@ -272,9 +243,9 @@ export default function Home() {
               </article>
               <article className="service-card service-card-accent reveal reveal-delay-1">
                 <div className="service-top"><span>02</span><ArrowUpRight size={18} /></div>
-                <h3>Estratégia que<br /><em>move atenção.</em></h3>
-                <p>Estratégia, mídia e performance transformam presença em movimento — com decisões guiadas por dados.</p>
-                <div className="service-tags"><span>Estratégia</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>Performance</span></div>
+                <h3>Gestão de<br /><em>tráfego pago.</em></h3>
+                <p>Campanhas, mídia e performance transformam presença em movimento — com decisões guiadas por dados.</p>
+                <div className="service-tags"><span>Gestão de tráfego pago</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>Performance</span></div>
               </article>
             </div>
           </div>
@@ -284,17 +255,8 @@ export default function Home() {
           <div className="container">
             <div className="section-heading portfolio-heading reveal">
 
-              <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio</p><h2>Presença<br /><em>em cena.</em></h2></div>
+              <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio</p></div>
               <p className="heading-aside">Eduarda Lopes Films<br />Filmes que conectam marcas, histórias e momentos.</p>
-            </div>
-            <p className="portfolio-intro reveal">Frames, processos e celebrações pensados para ganhar presença fora da tela — de marcas e empresas a casamentos, aniversários e eventos que merecem ser lembrados.</p>
-            <div className="project-grid project-grid-reframed">
-              {projects.map((project, index) => (
-                <article className={`project-card ${project.className} reveal reveal-delay-${index % 3}`} key={project.number}>
-                  <div className="project-image-wrap"><img src={project.image} alt={project.title} loading="lazy" /><div className="project-overlay"><span>{project.type}</span><ArrowUpRight size={21} /></div></div>
-                  <div className="project-meta"><span>{project.number}</span><h3>{project.title}</h3></div>
-                </article>
-              ))}
             </div>
 
             <div className="video-strip-heading reveal"><p className="eyebrow"><span className="eyebrow-dot" /> Em movimento</p><p>Algumas cenas do processo, do set e da direção por trás de cada entrega.</p></div>
@@ -314,7 +276,6 @@ export default function Home() {
                         <video className="video-preview" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source src={video.source} type="video/mp4" /></video><span className="video-play"><Play size={17} fill="currentColor" /></span>
                       </button>
                     </div>
-                    <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h3>{video.title}</h3></div>
                   </article>
                 ))}
               </div>
@@ -353,7 +314,6 @@ export default function Home() {
             <video controls autoPlay muted playsInline>
               <source src={activeVideo.source} type="video/mp4" />
             </video>
-            <p>{activeVideo.title}</p>
           </div>
         </div>
       )}
