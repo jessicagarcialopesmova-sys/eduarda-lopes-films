@@ -36,8 +36,6 @@ const heroPoster = asset("eduarda-bastidor-direcao.webp");
 const mark = asset("eduarda-lopes-films-logo-clean.png");
 const aboutMain = asset("eduarda-retrato-cobertura-evento.jpg");
 const aboutDetail = asset("eduarda-retrato-camera.webp");
-const aboutAccentOne = asset("eduarda-retrato-camera-evento.webp");
-const aboutAccentTwo = asset("eduarda-detalhe-lente-camera.jpg");
 const campaign0716 = asset("filme-campanha.mp4");
 const allegro = asset("filme-marca.mp4");
 const alliance = asset("projeto-imobiliario.mp4");
@@ -218,8 +216,6 @@ export default function Home() {
             <div className="about-stage reveal reveal-delay-1">
               <figure className="about-image-main"><img src={aboutMain} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
               <figure className="about-image-detail"><img src={aboutDetail} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
-              <figure className="about-image-accent about-image-accent-one"><img src={aboutAccentOne} alt="Eduarda em cobertura de evento, câmera em punho" loading="lazy" /></figure>
-              <figure className="about-image-accent about-image-accent-two"><img src={aboutAccentTwo} alt="Detalhe das mãos ajustando a lente da câmera" loading="lazy" /></figure>
               <div className="image-stamp">DIREÇÃO<br />COM PRESENÇA</div>
             </div>
             <div className="about-copy reveal reveal-delay-2">
