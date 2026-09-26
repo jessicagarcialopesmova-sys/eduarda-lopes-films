@@ -260,7 +260,7 @@ export default function Home() {
           <div className="container">
             <div className="section-heading reveal">
               <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
-              <p className="heading-aside">Serviço independente, oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
+              <p className="heading-aside">Oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
             </div>
             <div className="process-list">
               <article className="process-card reveal">
