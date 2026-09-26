@@ -5,9 +5,16 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
+  ClipboardCheck,
   Instagram,
+  LineChart,
+  Megaphone,
   Menu,
   Play,
+  RefreshCw,
+  Search,
+  Target,
+  TrendingUp,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -50,6 +57,8 @@ const vientos = asset("campanha-lancamento.mp4");
 const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
 const contactBackground = asset("eduarda-retrato-luz-quente.jpg");
+const trafficStageMain = asset("eduarda-equipamento-mesa.webp");
+const trafficStageDetail = asset("eduarda-camera-monitor.webp");
 
 type VideoItem = {
   title: string;
@@ -248,6 +257,65 @@ export default function Home() {
                 <p>Campanhas, mídia e performance transformam presença em movimento — com decisões guiadas por dados.</p>
                 <div className="service-tags"><span>Gestão de tráfego pago</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>Performance</span></div>
               </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="process-section section-pad">
+          <div className="container">
+            <div className="section-heading reveal">
+              <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago · opção A</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
+              <p className="heading-aside">Cada campanha segue um processo claro, do diagnóstico à otimização contínua — sem promessas soltas, com decisões guiadas por dados reais da sua conta.</p>
+            </div>
+            <div className="process-list">
+              <article className="process-card reveal">
+                <div className="process-top"><span>01</span><Search size={18} /></div>
+                <h3>Diagnóstico</h3>
+                <p>Análise da conta, do público e da concorrência antes de qualquer investimento em mídia.</p>
+              </article>
+              <article className="process-card reveal reveal-delay-1">
+                <div className="process-top"><span>02</span><Target size={18} /></div>
+                <h3>Estratégia de mídia</h3>
+                <p>Definição de objetivo, verba e plataformas certas para o momento do negócio.</p>
+              </article>
+              <article className="process-card reveal reveal-delay-2">
+                <div className="process-top"><span>03</span><Megaphone size={18} /></div>
+                <h3>Criação de anúncios</h3>
+                <p>Peças e testes A/B pensados para o público que realmente decide a compra.</p>
+              </article>
+              <article className="process-card reveal">
+                <div className="process-top"><span>04</span><TrendingUp size={18} /></div>
+                <h3>Otimização contínua</h3>
+                <p>Ajustes semanais de verba, criativos e segmentação com base em resultado real.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="traffic-mirror-section section-pad">
+          <div className="container about-layout traffic-mirror-layout">
+            <div className="about-copy reveal reveal-delay-2">
+              <p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago · opção B</p>
+              <h2>Presença que<br /><em>também performa.</em></h2>
+              <p className="lead">Direção criativa e gestão de tráfego pago andam juntas — a mesma marca, em movimento nas plataformas certas.</p>
+              <p>Campanhas acompanhadas de perto, com relatórios claros e decisões guiadas pelo desempenho real de cada anúncio.</p>
+              <div className="service-tags traffic-mirror-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span></div>
+            </div>
+            <div className="about-stage reveal reveal-delay-1">
+              <figure className="about-image-main"><img src={trafficStageMain} alt="Mesa de trabalho com equipamento de produção" loading="lazy" /></figure>
+              <figure className="about-image-detail"><img src={trafficStageDetail} alt="Monitor acompanhando a gravação em tempo real" loading="lazy" /></figure>
+            </div>
+          </div>
+        </section>
+
+        <section className="trust-section">
+          <div className="container trust-inner reveal">
+            <p className="eyebrow light"><span className="eyebrow-dot" /> Tráfego pago · opção C</p>
+            <h2>Um jeito claro<br />de acompanhar <em>cada campanha.</em></h2>
+            <div className="trust-grid">
+              <div className="trust-item"><ClipboardCheck size={22} /><span>Diagnóstico sem compromisso</span></div>
+              <div className="trust-item"><LineChart size={22} /><span>Relatórios semanais</span></div>
+              <div className="trust-item"><RefreshCw size={22} /><span>Otimização contínua</span></div>
             </div>
           </div>
         </section>
