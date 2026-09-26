@@ -236,31 +236,8 @@ export default function Home() {
           <div className="container">
             <div className="section-heading reveal">
 
-              <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Imagem com<br /><em>direção.</em></h2></div>
-              <p className="heading-aside light-aside">Cada entrega nasce de uma escuta atenta e encontra seu formato no encontro entre estética, estratégia e movimento.</p>
-            </div>
-            <div className="service-list">
-              <article className="service-card reveal">
-                <div className="service-top"><span>01</span><Play size={18} fill="currentColor" /></div>
-                <h3>Filmes com<br /><em>direção.</em></h3>
-                <p>Do primeiro take ao corte final, vídeos que traduzem a essência da sua marca com clareza, ritmo e emoção.</p>
-                <div className="service-tags"><span>Institucional</span><span>Redes sociais</span><span>Eventos</span><span>Publicidade</span></div>
-              </article>
-              <article className="service-card service-card-accent reveal reveal-delay-1">
-                <div className="service-top"><span>02</span><ArrowUpRight size={18} /></div>
-                <h3>Gestão de<br /><em>tráfego pago.</em></h3>
-                <p>Campanhas, mídia e performance transformam presença em movimento — com decisões guiadas por dados.</p>
-                <div className="service-tags"><span>Gestão de tráfego pago</span><span>Meta Ads</span><span>Google Ads</span><span>ChatGPT Ads</span><span>TikTok Ads</span><span>Performance</span></div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="process-section section-pad">
-          <div className="container">
-            <div className="section-heading reveal">
-              <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
-              <p className="heading-aside">Oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
+              <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
+              <p className="heading-aside light-aside">Oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
             </div>
             <div className="process-list">
               <article className="process-card reveal">

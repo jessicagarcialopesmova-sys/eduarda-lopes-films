@@ -5352,6 +5352,24 @@ h2 {
 .services-reframed .service-card h3 {
   font-size: clamp(62px, 7vw, 100px);
 }
+.services-reframed .process-list {
+  border-top: 0;
+  border-bottom: 0;
+  gap: 16px;
+}
+.services-reframed .process-card {
+  background: #ffffff09;
+  border: 1px solid #f2eadc40;
+}
+.services-reframed .process-top {
+  color: var(--accent);
+}
+.services-reframed .process-card h3 {
+  color: var(--cream);
+}
+.services-reframed .process-card p {
+  color: #d7c8b8;
+}
 .portfolio-reframed {
   padding-top: 170px;
 }
