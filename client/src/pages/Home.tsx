@@ -5,13 +5,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  ClipboardCheck,
   Instagram,
-  LineChart,
   Megaphone,
   Menu,
   Play,
-  RefreshCw,
   Search,
   Target,
   TrendingUp,
@@ -57,8 +54,6 @@ const vientos = asset("campanha-lancamento.mp4");
 const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
 const contactBackground = asset("eduarda-retrato-luz-quente.jpg");
-const trafficStageMain = asset("eduarda-equipamento-mesa.webp");
-const trafficStageDetail = asset("eduarda-camera-monitor.webp");
 
 type VideoItem = {
   title: string;
@@ -264,8 +259,8 @@ export default function Home() {
         <section className="process-section section-pad">
           <div className="container">
             <div className="section-heading reveal">
-              <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago · opção A</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
-              <p className="heading-aside">Cada campanha segue um processo claro, do diagnóstico à otimização contínua — sem promessas soltas, com decisões guiadas por dados reais da sua conta.</p>
+              <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
+              <p className="heading-aside">Serviço independente, oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
             </div>
             <div className="process-list">
               <article className="process-card reveal">
@@ -288,34 +283,6 @@ export default function Home() {
                 <h3>Otimização contínua</h3>
                 <p>Ajustes semanais de verba, criativos e segmentação com base em resultado real.</p>
               </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="traffic-mirror-section section-pad">
-          <div className="container about-layout traffic-mirror-layout">
-            <div className="about-copy reveal reveal-delay-2">
-              <p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago · opção B</p>
-              <h2>Presença que<br /><em>também performa.</em></h2>
-              <p className="lead">Direção criativa e gestão de tráfego pago andam juntas — a mesma marca, em movimento nas plataformas certas.</p>
-              <p>Campanhas acompanhadas de perto, com relatórios claros e decisões guiadas pelo desempenho real de cada anúncio.</p>
-              <div className="service-tags traffic-mirror-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span></div>
-            </div>
-            <div className="about-stage reveal reveal-delay-1">
-              <figure className="about-image-main"><img src={trafficStageMain} alt="Mesa de trabalho com equipamento de produção" loading="lazy" /></figure>
-              <figure className="about-image-detail"><img src={trafficStageDetail} alt="Monitor acompanhando a gravação em tempo real" loading="lazy" /></figure>
-            </div>
-          </div>
-        </section>
-
-        <section className="trust-section">
-          <div className="container trust-inner reveal">
-            <p className="eyebrow light"><span className="eyebrow-dot" /> Tráfego pago · opção C</p>
-            <h2>Um jeito claro<br />de acompanhar <em>cada campanha.</em></h2>
-            <div className="trust-grid">
-              <div className="trust-item"><ClipboardCheck size={22} /><span>Diagnóstico sem compromisso</span></div>
-              <div className="trust-item"><LineChart size={22} /><span>Relatórios semanais</span></div>
-              <div className="trust-item"><RefreshCw size={22} /><span>Otimização contínua</span></div>
             </div>
           </div>
         </section>
