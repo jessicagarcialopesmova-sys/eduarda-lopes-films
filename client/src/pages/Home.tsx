@@ -49,6 +49,7 @@ const brandVideoTwo = asset("conteudo-marca-02.mp4");
 const vientos = asset("campanha-lancamento.mp4");
 const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
+const contactBackground = asset("eduarda-retrato-luz-quente.jpg");
 
 type VideoItem = {
   title: string;
@@ -300,7 +301,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contato" className="contact-section section-pad">
+        <section id="contato" className="contact-section section-pad" style={{ backgroundImage: `url(${contactBackground})` }}>
           <div className="container contact-grid"><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "instagram" })}><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "whatsapp" })}><ArrowUpRight size={16} /> WhatsApp</a></div></div>
         </section>
       </main>

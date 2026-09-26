@@ -4825,11 +4825,22 @@ h2 {
 }
 .contact-section {
   border-top: 1px solid #f2eadc33;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.contact-section:before {
+  content: "";
+  background: #3a281ac2;
+  position: absolute;
+  inset: 0;
 }
 .contact-grid {
   grid-template-columns: minmax(90px, 1fr) 2.2fr 1fr;
   gap: 40px;
   display: grid;
+  position: relative;
+  z-index: 1;
 }
 .contact-main h2 {
   margin-bottom: 42px;
