@@ -256,12 +256,6 @@ export default function Home() {
                   <li><Megaphone size={14} /> Criação de anúncios</li>
                   <li><TrendingUp size={14} /> Otimização contínua</li>
                 </ul>
-                <div className="service-chart">
-                  <svg viewBox="0 0 100 34" preserveAspectRatio="none" fill="none" aria-hidden="true">
-                    <path d="M2 28 L22 20 L42 24 L62 10 L82 14 L98 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="98" cy="4" r="3" fill="currentColor" />
-                  </svg>
-                </div>
                 <div className="service-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span><span>Performance</span></div>
                 <div className="service-signature"><span className="signature-avatar signature-avatar-initials">JL</span><span>Gestão de tráfego pago — Jessica Lopes | Gestão Digital</span></div>
               </article>
@@ -274,7 +268,6 @@ export default function Home() {
             <div className="section-heading portfolio-heading reveal">
 
               <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio</p></div>
-              <p className="heading-aside">Eduarda Lopes Films<br />Filmes que conectam marcas, histórias e momentos.</p>
             </div>
 
             <div className="video-strip-heading reveal"><p className="eyebrow"><span className="eyebrow-dot" /> Em movimento</p><p>Algumas cenas do processo, do set e da direção por trás de cada entrega.</p></div>
