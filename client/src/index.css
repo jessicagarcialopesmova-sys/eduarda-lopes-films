@@ -4475,6 +4475,67 @@ h2 {
   margin-top: 20px;
   display: flex;
 }
+.service-process {
+  color: #d7c8b8;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  margin: 6px 0 4px;
+  padding: 0;
+  font-size: 13px;
+  list-style: none;
+  display: grid;
+}
+.service-process li {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+.service-process svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.service-chart {
+  color: var(--accent);
+  opacity: 0.85;
+  width: 100px;
+  height: 34px;
+  margin-top: 18px;
+  display: block;
+}
+.service-chart svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.service-signature {
+  border-top: 1px solid #f2eadc33;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  display: flex;
+}
+.signature-avatar {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.signature-avatar-initials {
+  background: var(--accent);
+  color: var(--ink);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+}
 .service-tags span {
   color: #dbcbb9;
   letter-spacing: 0.08em;
@@ -4881,22 +4942,11 @@ h2 {
 }
 .contact-section {
   border-top: 1px solid #f2eadc33;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-.contact-section:before {
-  content: "";
-  background: #3a281ac2;
-  position: absolute;
-  inset: 0;
 }
 .contact-grid {
   grid-template-columns: minmax(90px, 1fr) 2.2fr 1fr;
   gap: 40px;
   display: grid;
-  position: relative;
-  z-index: 1;
 }
 .contact-main h2 {
   margin-bottom: 42px;
@@ -5306,6 +5356,62 @@ h2 {
   left: -16px;
   transform: rotate(-14deg);
 }
+.about-refined-layout {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(50px, 8vw, 110px);
+  display: grid;
+}
+.about-refined-image {
+  border-radius: 14px;
+  min-height: 560px;
+  box-shadow: 20px 25px #4a382c1a;
+  position: relative;
+  overflow: hidden;
+}
+.about-refined-image img {
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.92) contrast(1.03);
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.about-refined-image figcaption {
+  color: var(--paper);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(0deg, #13110fcc, #13110f00);
+  padding: 18px 22px;
+  font-size: 11px;
+  font-weight: 600;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.about-refined-image figcaption span {
+  color: var(--accent);
+  font-weight: 500;
+}
+.about-quote {
+  border-left: 2px solid var(--accent);
+  color: var(--ink);
+  margin: 22px 0 26px;
+  padding-left: 28px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-style: italic;
+  line-height: 1.35;
+  font-family:
+    Cormorant Garamond,
+    serif;
+}
+.about-quote span {
+  color: var(--accent);
+  margin-right: 2px;
+  font-size: 1.4em;
+  font-style: normal;
+}
 .about-copy {
   align-self: end;
   padding-bottom: 44px;
@@ -5340,11 +5446,24 @@ h2 {
 }
 .services-reframed .service-card-accent .service-top,
 .services-reframed .service-card-accent p,
-.services-reframed .service-card-accent .service-tags span {
+.services-reframed .service-card-accent .service-tags span,
+.services-reframed .service-card-accent .service-process,
+.services-reframed .service-card-accent .service-signature,
+.services-reframed .service-card-accent .service-chart {
   color: var(--ink);
+}
+.services-reframed .service-card-accent .service-chart {
+  opacity: 0.6;
 }
 .services-reframed .service-card-accent .service-tags span {
   border-color: #332b2459;
+}
+.services-reframed .service-card-accent .service-signature {
+  border-color: #332b2459;
+}
+.services-reframed .service-card-accent .signature-avatar-initials {
+  background: var(--ink);
+  color: var(--accent);
 }
 .services-reframed .service-card-accent:after {
   background: var(--brown);
@@ -5371,7 +5490,7 @@ h2 {
   color: #d7c8b8;
 }
 .portfolio-reframed {
-  padding-top: 170px;
+  padding-top: 90px;
 }
 .project-grid-reframed {
   grid-template-rows: auto auto;
@@ -6610,6 +6729,7 @@ h2 {
     margin-right: 0;
   }
   .about-layout,
+  .about-refined-layout,
   .section-heading,
   .portfolio-heading,
   .contact-grid {
@@ -6618,6 +6738,9 @@ h2 {
   .about-stage {
     min-height: 480px;
     margin-left: 0;
+  }
+  .about-refined-image {
+    min-height: 380px;
   }
   .about-copy {
     padding-top: 0;

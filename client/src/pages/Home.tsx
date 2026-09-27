@@ -215,17 +215,16 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="sobre" className="intro-section section-pad about-reframed">
-          <div className="container about-layout">
-            <div className="about-stage reveal reveal-delay-1">
-              <figure className="about-image-main"><img src={aboutMain} alt="Detalhe de uma câmera em processo de gravação" loading="lazy" /></figure>
-              <figure className="about-image-detail"><img src={aboutDetail} alt="Eduarda com uma câmera durante uma produção" loading="lazy" /></figure>
-              <div className="image-stamp">DIREÇÃO<br />COM PRESENÇA</div>
-            </div>
+        <section id="sobre" className="intro-section section-pad about-refined">
+          <div className="container about-refined-layout">
+            <figure className="about-refined-image reveal reveal-delay-1">
+              <img src={aboutMain} alt="Eduarda Lopes em cobertura de produção" loading="lazy" />
+              <figcaption>EDUARDA LOPES <span>· DIREÇÃO</span></figcaption>
+            </figure>
             <div className="about-copy reveal reveal-delay-2">
               <p className="eyebrow"><span className="eyebrow-dot" /> Sobre o processo</p>
               <h2>Forma para o<br /><em>que precisa mover.</em></h2>
-              <p className="lead">Toda marca tem uma história que merece ser vista — não só contada.</p>
+              <blockquote className="about-quote"><span aria-hidden="true">“</span>Toda marca tem uma história que merece ser vista — não só contada.</blockquote>
               <p>Direção, sensibilidade e estratégia se encontram para criar imagens que fazem sentido no mundo real. Do roteiro à campanha, cada entrega constrói presença com intenção, ritmo e verdade.</p>
               <a href="#servicos" className="text-link" onClick={() => trackAnalyticsEvent("cta_click", { location: "sobre", destination: "servicos" })}>Conheça o processo <ArrowUpRight size={16} /></a>
             </div>
@@ -237,28 +236,34 @@ export default function Home() {
             <div className="section-heading reveal">
 
               <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
-              <p className="heading-aside light-aside">Oferecido por Jessica Lopes | Gestão Digital — disponível para qualquer marca que queira ritmo e clareza em mídia paga, com ou sem produção audiovisual.</p>
+              <p className="heading-aside light-aside">Direção audiovisual e gestão de tráfego pago — cuidados diferentes, disponíveis juntos ou separados.</p>
             </div>
-            <div className="process-list">
-              <article className="process-card reveal">
-                <div className="process-top"><span>01</span><Search size={18} /></div>
-                <h3>Diagnóstico</h3>
-                <p>Análise da conta, do público e da concorrência antes de qualquer investimento em mídia.</p>
+            <div className="service-list">
+              <article className="service-card reveal">
+                <div className="service-top"><span>01</span><Play size={18} fill="currentColor" /></div>
+                <h3>Filmes com<br /><em>direção.</em></h3>
+                <p>Do primeiro take ao corte final, vídeos que traduzem a essência da sua marca com clareza, ritmo e emoção.</p>
+                <div className="service-tags"><span>Institucional</span><span>Redes sociais</span><span>Eventos</span><span>Publicidade</span></div>
+                <div className="service-signature"><img src={aboutDetail} alt="" className="signature-avatar" /><span>Direção — Eduarda Lopes</span></div>
               </article>
-              <article className="process-card reveal reveal-delay-1">
-                <div className="process-top"><span>02</span><Target size={18} /></div>
-                <h3>Estratégia de mídia</h3>
-                <p>Definição de objetivo, verba e plataformas certas para o momento do negócio.</p>
-              </article>
-              <article className="process-card reveal reveal-delay-2">
-                <div className="process-top"><span>03</span><Megaphone size={18} /></div>
-                <h3>Criação de anúncios</h3>
-                <p>Peças e testes A/B pensados para o público que realmente decide a compra.</p>
-              </article>
-              <article className="process-card reveal">
-                <div className="process-top"><span>04</span><TrendingUp size={18} /></div>
-                <h3>Otimização contínua</h3>
-                <p>Ajustes semanais de verba, criativos e segmentação com base em resultado real.</p>
+              <article className="service-card service-card-accent reveal reveal-delay-1">
+                <div className="service-top"><span>02</span><ArrowUpRight size={18} /></div>
+                <h3>Gestão de<br /><em>tráfego pago.</em></h3>
+                <p>Da estratégia à otimização, cada campanha segue um processo claro — pensado para transformar atenção em decisão de compra.</p>
+                <ul className="service-process">
+                  <li><Search size={14} /> Diagnóstico</li>
+                  <li><Target size={14} /> Estratégia de mídia</li>
+                  <li><Megaphone size={14} /> Criação de anúncios</li>
+                  <li><TrendingUp size={14} /> Otimização contínua</li>
+                </ul>
+                <div className="service-chart">
+                  <svg viewBox="0 0 100 34" preserveAspectRatio="none" fill="none" aria-hidden="true">
+                    <path d="M2 28 L22 20 L42 24 L62 10 L82 14 L98 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="98" cy="4" r="3" fill="currentColor" />
+                  </svg>
+                </div>
+                <div className="service-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span><span>Performance</span></div>
+                <div className="service-signature"><span className="signature-avatar signature-avatar-initials">JL</span><span>Gestão de tráfego pago — Jessica Lopes | Gestão Digital</span></div>
               </article>
             </div>
           </div>
@@ -297,7 +302,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="statement-section statement-reframed" style={{ backgroundImage: `url(${heroPoster})` }}>
+        <section className="statement-section statement-reframed" style={{ backgroundImage: `url(${contactBackground})` }}>
           <div className="container statement-inner reveal"><img className="statement-mark" src={mark} alt="Eduarda Lopes Films" /><p className="eyebrow light"><span className="eyebrow-dot" /> Para marcar sua presença</p><h2>Sua próxima fase<br />merece um registro<br /><em>à altura.</em></h2><a href="#orcamento" className="button button-light" onClick={() => trackAnalyticsEvent("cta_click", { location: "statement", destination: "orcamento" })}>Começar uma conversa <ArrowUpRight size={17} /></a></div>
         </section>
 
@@ -313,7 +318,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contato" className="contact-section section-pad" style={{ backgroundImage: `url(${contactBackground})` }}>
+        <section id="contato" className="contact-section section-pad">
           <div className="container contact-grid"><div className="contact-main reveal reveal-delay-1"><p className="eyebrow light"><span className="eyebrow-dot" /> Contato</p><h2>Tem uma história<br />para <em>contar?</em></h2><p className="contact-lead">Vamos conversar sobre o próximo registro.</p><a className="contact-email" href="mailto:lopeseduarda.mkt@gmail.com">lopeseduarda.mkt@gmail.com <ArrowUpRight size={20} /></a></div><div className="contact-details reveal reveal-delay-2"><p>Projetos em todo o Brasil, com base em Capão da Canoa - RS.</p><a href="https://www.instagram.com/eduardalopesfilms/" target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "instagram" })}><Instagram size={16} /> Instagram</a><a href="https://wa.me/5551990165073?text=Ol%C3%A1%20Eduarda%2C%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("social_click", { network: "whatsapp" })}><ArrowUpRight size={16} /> WhatsApp</a></div></div>
         </section>
       </main>
