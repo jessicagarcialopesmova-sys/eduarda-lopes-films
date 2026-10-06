@@ -6,12 +6,13 @@ import {
   ArrowUpRight,
   Check,
   Instagram,
+  LineChart,
   Megaphone,
   Menu,
   Play,
-  Search,
   Target,
   TrendingUp,
+  Users,
   X,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -54,6 +55,7 @@ const vientos = asset("campanha-lancamento.mp4");
 const zenith = asset("campanha-editorial.mp4");
 const zonaNova = asset("zona-nova-obra.mp4");
 const contactBackground = asset("eduarda-retrato-luz-quente.jpg");
+const trafficWhatsApp = "https://wa.me/5551997245960?text=Ol%C3%A1%20Jessica%2C%20quero%20conversar%20sobre%20gest%C3%A3o%20de%20tr%C3%A1fego%20pago.";
 
 type VideoItem = {
   title: string;
@@ -86,8 +88,9 @@ const videos: VideoItem[] = [
 
 const navItems = [
   ["Sobre", "sobre"],
-  ["Serviços", "servicos"],
   ["Portfólio", "portfolio"],
+  ["Serviços", "servicos"],
+  ["Tráfego pago", "trafego-pago"],
   ["Contato", "contato"],
 ];
 
@@ -231,38 +234,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="servicos" className="services-section services-reframed section-pad">
-          <div className="container">
-            <div className="section-heading reveal">
-
-              <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
-              <p className="heading-aside light-aside">Direção audiovisual e gestão de tráfego pago — cuidados diferentes, disponíveis juntos ou separados.</p>
-            </div>
-            <div className="service-list">
-              <article className="service-card reveal">
-                <div className="service-top"><span>01</span><Play size={18} fill="currentColor" /></div>
-                <h3>Filmes com<br /><em>direção.</em></h3>
-                <p>Do primeiro take ao corte final, vídeos que traduzem a essência da sua marca com clareza, ritmo e emoção.</p>
-                <div className="service-tags"><span>Institucional</span><span>Redes sociais</span><span>Eventos</span><span>Publicidade</span></div>
-                <div className="service-signature"><img src={aboutDetail} alt="" className="signature-avatar" /><span>Direção — Eduarda Lopes</span></div>
-              </article>
-              <article className="service-card service-card-accent reveal reveal-delay-1">
-                <div className="service-top"><span>02</span><ArrowUpRight size={18} /></div>
-                <h3>Gestão de<br /><em>tráfego pago.</em></h3>
-                <p>Da estratégia à otimização, cada campanha segue um processo claro — pensado para transformar atenção em decisão de compra.</p>
-                <ul className="service-process">
-                  <li><Search size={14} /> Diagnóstico</li>
-                  <li><Target size={14} /> Estratégia de mídia</li>
-                  <li><Megaphone size={14} /> Criação de anúncios</li>
-                  <li><TrendingUp size={14} /> Otimização contínua</li>
-                </ul>
-                <div className="service-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span><span>Performance</span></div>
-                <div className="service-signature"><span className="signature-avatar signature-avatar-initials">JL</span><span>Gestão de tráfego pago — Jessica Lopes | Gestão Digital</span></div>
-              </article>
-            </div>
-          </div>
-        </section>
-
         <section id="portfolio" className="portfolio-section portfolio-reframed section-pad">
           <div className="container">
             <div className="section-heading portfolio-heading reveal">
@@ -292,6 +263,73 @@ export default function Home() {
               </div>
             </div>
             <div className="portfolio-foot reveal"><span className="rule" /><p>Mais histórias e projetos em breve.</p></div>
+          </div>
+        </section>
+
+        <section id="servicos" className="services-section services-reframed section-pad">
+          <div className="container">
+            <div className="section-heading reveal">
+
+              <div><p className="eyebrow light"><span className="eyebrow-dot" /> Serviços</p><h2>Da estratégia<br /><em>ao resultado.</em></h2></div>
+              <p className="heading-aside light-aside">Produção audiovisual com direção, do roteiro à entrega final.</p>
+            </div>
+            <div className="service-list service-list-single">
+              <article className="service-card reveal">
+                <div className="service-top"><span>01</span><Play size={18} fill="currentColor" /></div>
+                <h3>Filmes com<br /><em>direção.</em></h3>
+                <p>Do primeiro take ao corte final, vídeos que traduzem a essência da sua marca com clareza, ritmo e emoção.</p>
+                <div className="service-tags"><span>Institucional</span><span>Redes sociais</span><span>Eventos</span><span>Publicidade</span></div>
+                <div className="service-signature"><img src={aboutDetail} alt="" className="signature-avatar" /><span>Direção — Eduarda Lopes</span></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="trafego-pago" className="traffic-section section-pad">
+          <div className="container">
+            <div className="section-heading reveal">
+              <div><p className="eyebrow"><span className="eyebrow-dot" /> Tráfego pago</p><h2>Estratégia e gestão<br /><em>de tráfego pago.</em></h2></div>
+              <p className="heading-aside">Planejamento, gestão e otimização de campanhas de anúncios, com acompanhamento de métricas e decisões orientadas pelos objetivos de cada negócio.</p>
+            </div>
+            <div className="traffic-layout">
+              <div className="process-list traffic-scope">
+                <article className="process-card reveal">
+                  <div className="process-top"><span>01</span><Target size={16} /></div>
+                  <h3>Planejamento</h3>
+                  <p>Definição de objetivo, público e verba antes de qualquer campanha ir ao ar.</p>
+                </article>
+                <article className="process-card reveal reveal-delay-1">
+                  <div className="process-top"><span>02</span><Megaphone size={16} /></div>
+                  <h3>Gestão de anúncios</h3>
+                  <p>Criação e administração das campanhas nas plataformas contratadas.</p>
+                </article>
+                <article className="process-card reveal reveal-delay-2">
+                  <div className="process-top"><span>03</span><TrendingUp size={16} /></div>
+                  <h3>Monitoramento e otimização</h3>
+                  <p>Acompanhamento constante, com ajustes guiados por desempenho real.</p>
+                </article>
+                <article className="process-card reveal">
+                  <div className="process-top"><span>04</span><LineChart size={16} /></div>
+                  <h3>Análise de métricas</h3>
+                  <p>Relatórios claros sobre o que está funcionando e o que precisa mudar.</p>
+                </article>
+                <article className="process-card reveal reveal-delay-1">
+                  <div className="process-top"><span>05</span><Users size={16} /></div>
+                  <h3>Geração de leads</h3>
+                  <p>Estratégias voltadas para atrair e converter potenciais clientes.</p>
+                </article>
+              </div>
+              <div className="traffic-profile reveal reveal-delay-2">
+                <span className="signature-avatar signature-avatar-initials traffic-profile-avatar">JL</span>
+                <p className="eyebrow"><span className="eyebrow-dot" /> Quem cuida</p>
+                <h3>Jessica Lopes</h3>
+                <p className="traffic-profile-role">Gestão Digital</p>
+                <p>Jessica cuida do planejamento e acompanhamento de campanhas de tráfego pago para marcas e negócios que querem ganhar ritmo em mídia paga.</p>
+                <p className="traffic-profile-method">Cada campanha começa com um diagnóstico do objetivo e do público, segue com testes de criativos e públicos, e é ajustada com base no desempenho real.</p>
+                <div className="service-tags traffic-profile-tags"><span>Meta Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>ChatGPT Ads</span></div>
+                <a className="button button-dark" href={trafficWhatsApp} target="_blank" rel="noreferrer" onClick={() => trackAnalyticsEvent("cta_click", { location: "trafego_pago", destination: "whatsapp" })}>Falar sobre tráfego pago <ArrowUpRight size={17} /></a>
+              </div>
+            </div>
           </div>
         </section>
 
