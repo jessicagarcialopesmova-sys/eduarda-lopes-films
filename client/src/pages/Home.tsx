@@ -35,6 +35,8 @@ function trackAnalyticsEvent(eventName: string, params: AnalyticsParams = {}) {
   window.dataLayer.push(["event", eventName, params]);
 }
 
+const WHATSAPP_NUMBER = "5551990165073";
+
 const asset = (name: string) => `/assets/${name}`;
 const heroPoster = asset("eduarda-bastidor-direcao.webp");
 const mark = asset("eduarda-lopes-films-logo-clean.png");
@@ -159,11 +161,27 @@ export default function Home() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const field = (key: string) => String(formData.get(key) || "").trim();
+    const service = field("service");
+    const message = [
+      "Olá, Eduarda! Vim pelo site e quero um orçamento.",
+      "",
+      `*Nome:* ${field("name")}`,
+      `*E-mail:* ${field("email")}`,
+      `*WhatsApp:* ${field("phone")}`,
+      `*Serviço:* ${service}`,
+      `*Projeto:* ${field("project")}`,
+    ].join("\n");
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     trackAnalyticsEvent("contact_form_submit", {
-      service: String(formData.get("service") || "not_specified"),
+      service: service || "not_specified",
+      channel: "whatsapp",
     });
+    const opened = window.open(whatsappUrl, "_blank");
+    if (opened) opened.opener = null;
+    else window.location.href = whatsappUrl;
     setSent(true);
-    toast.success("Recebi seu projeto. Em breve entro em contato.");
+    toast.success("Abrimos o WhatsApp com sua mensagem. É só tocar em enviar.");
   };
 
   const closeMenu = () => setMenuOpen(false);
@@ -306,7 +324,7 @@ export default function Home() {
               <div className="form-row"><label>Seu nome<input required name="name" placeholder="Como podemos te chamar?" /></label><label>E-mail<input required type="email" name="email" placeholder="voce@empresa.com" /></label></div>
               <div className="form-row"><label>WhatsApp<input required name="phone" placeholder="(00) 00000-0000" /><span className="field-help">Inclua o DDD</span></label><label>Tipo de serviço<select required name="service" defaultValue=""><option value="" disabled>Escolha uma opção</option><option>Produção audiovisual</option><option>Gestão digital / tráfego pago</option><option>Os dois</option></select></label></div>
               <label>Fale sobre o projeto<textarea required name="project" rows={4} placeholder="O que precisa ganhar presença, ritmo ou movimento?" /></label>
-              <div className="form-submit"><button className="button button-dark" type="submit">{sent ? "Mensagem enviada" : "Enviar projeto"} <ArrowUpRight size={17} /></button><span>Ao enviar, você concorda com nossa política de privacidade.</span></div>
+              <div className="form-submit"><button className="button button-dark" type="submit"><WhatsAppIcon size={17} /> {sent ? "Abrir o WhatsApp de novo" : "Enviar pelo WhatsApp"}</button><span>Sua mensagem abre pronta no WhatsApp — é só tocar em enviar.</span></div>
             </form>
           </div>
         </section>

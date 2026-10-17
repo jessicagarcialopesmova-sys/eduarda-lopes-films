@@ -32,7 +32,7 @@ O domínio publicado é [eduardalopesfilms.com.br](https://eduardalopesfilms.com
 
 ## Contato e formulário
 
-O formulário de orçamento atualmente valida os campos no navegador e confirma o envio visualmente. Ele ainda não encaminha os dados para uma caixa de e-mail ou CRM; essa integração pode ser adicionada posteriormente com um serviço de formulários ou backend seguro. Os canais públicos foram reduzidos a Instagram, WhatsApp e `lopeseduarda.mkt@gmail.com`. O botão flutuante usa o WhatsApp `+55 51 99016-5073`, com símbolo circular em champagne e marrom, seguindo a identidade visual.
+O formulário de orçamento valida os campos no navegador e, ao enviar, abre o WhatsApp (+55 51 99016-5073) com uma mensagem pronta contendo nome, e-mail, WhatsApp, serviço e descrição do projeto. O visitante só precisa tocar em enviar no WhatsApp. O número fica na constante `WHATSAPP_NUMBER` em `client/src/pages/Home.tsx`, e cada envio é registrado no GA4 como `contact_form_submit`. Os canais públicos foram reduzidos a Instagram, WhatsApp e `lopeseduarda.mkt@gmail.com`. O botão flutuante usa o WhatsApp `+55 51 99016-5073`, com símbolo circular em champagne e marrom, seguindo a identidade visual.
 
 ## Mídias e painel
 
